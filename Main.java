@@ -14,6 +14,6 @@ public class Main {
         llist.print();llist.addLastWithNext(29,llist.getNodeAtIndex(0).next);
         System.out.println(llist.hasCycle());
 
-
     }
 }
+THIS IS VAMSI EDITING MAIN 
