@@ -8,7 +8,10 @@ import com.surya.LinkedLists.LinkedList;
 public class Main {
     public static void main(String[] args) {
         LinkedList<Integer> llist = new LinkedList<>();
-        for (int i = 0; i <= 8; i++) {
+        /*for (int i = 0; i <= 8; i++) {
+            llist.addLast(i + 20);
+        }*/
+        for (int i = 0; i < 30; i++) {
             llist.addLast(i + 20);
         }
         llist.print();llist.addLastWithNext(29,llist.getNodeAtIndex(0).next);
