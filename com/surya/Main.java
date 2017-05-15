@@ -10,10 +10,12 @@ public class Main {
     public static void main(String[] args) {
         LinkedList<Integer> llist = new LinkedList<>();
         LinkedList<Integer> llist2 = new LinkedList<>();
-        for (int i = 1; i < 21; i += 2) {
-            llist.addLast(i);
-            llist2.addLast(i + 1);
-        }
+        llist.addFirst(5);
+        llist.addLast(10);
+        llist.addLast(15);
+        llist2.addFirst(2);
+        llist2.addLast(3);
+        llist2.addLast(20);
         llist.print();
         llist2.print();
         LinkedList_Operations op = new LinkedList_Operations();

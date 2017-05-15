@@ -7,6 +7,10 @@ public class LinkedList_Operations extends LinkedList {
 
     public Node SortedMerge(Node a, Node b) {
 
+        //Sorts and merges 2 LinkedLists  which are already sorted individually.
+
+
+
         Node res = null;
         if (a == null) {
             return b;
