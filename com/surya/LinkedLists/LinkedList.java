@@ -2,22 +2,21 @@ package com.surya.LinkedLists;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
- 
+
 /**
  * Created by skuchibh on 4/26/2017.
  */
 public class LinkedList<AnyType> implements Iterable<AnyType> {
-    @Override
-    public Iterator<AnyType> iterator() {
-        return new LinkedListIterator();
-    }
-
     private Node<AnyType> head;
-
     private AnyType cycleStart = null, cycleEnd = null;
 
     public LinkedList() {
         head = null;
+    }
+
+    @Override
+    public Iterator<AnyType> iterator() {
+        return new LinkedListIterator();
     }
 
     public boolean isEmpty() {
@@ -33,6 +32,7 @@ public class LinkedList<AnyType> implements Iterable<AnyType> {
         else
             throw new NoSuchElementException();
     }
+
 
     public AnyType removeFirst() {
         AnyType tmp = getFirst();
@@ -339,6 +339,24 @@ public class LinkedList<AnyType> implements Iterable<AnyType> {
         reverse_Recursive(temp, cur);
     }
 
+    public static class Node<AnyType> {
+        public AnyType data;
+        public Node<AnyType> next = null;
+
+        public Node(AnyType data, Node<AnyType> next) {
+            this.data = data;
+            this.next = next;
+        }
+
+        @Override
+        public String toString() {
+            return "Node{" +
+                    "data=" + data +
+                    '}';
+        }
+
+    }
+
     private class LinkedListIterator implements Iterator<AnyType> {
         private Node<AnyType> nextNode;
 
@@ -365,20 +383,5 @@ public class LinkedList<AnyType> implements Iterable<AnyType> {
         }
     }
 
-    public static class Node<AnyType> {
-        private AnyType data;
-        public Node<AnyType> next = null;
 
-        public Node(AnyType data, Node<AnyType> next) {
-            this.data = data;
-            this.next = next;
-        }
-
-        @Override
-        public String toString() {
-            return "Node{" +
-                    "data=" + data +
-                    '}';
-        }
-    }
 }
