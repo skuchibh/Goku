@@ -8,7 +8,7 @@ import java.util.NoSuchElementException;
  */
 public class LinkedList<AnyType> implements Iterable<AnyType> {
     private Node<AnyType> head;
-    private AnyType cycleStart = null, cycleEnd = null;
+    //private AnyType cycleStart = null, cycleEnd = null;
 
     public LinkedList() {
         head = null;
@@ -133,6 +133,13 @@ public class LinkedList<AnyType> implements Iterable<AnyType> {
             tmp = tmp.next;
         }
         System.out.println("============");
+    }
+
+    public void deleteNode(Node node) {
+        Node temp = node.next;
+        node.data = temp.data;
+        node.next = temp.next;
+
     }
 
     public boolean contains_Recursive(AnyType x) {
@@ -324,6 +331,7 @@ public class LinkedList<AnyType> implements Iterable<AnyType> {
 
     }
 
+
     public void reverse_Recursive() {
         reverse_Recursive(head, null);
     }
@@ -337,6 +345,22 @@ public class LinkedList<AnyType> implements Iterable<AnyType> {
         Node temp = cur.next;
         cur.next = prev;
         reverse_Recursive(temp, cur);
+    }
+
+    public void SortedInsert(Node new_node) {
+        Node current;
+        Node headd = head;
+        if (headd == null || ((Integer) headd.data) >= (Integer) new_node.data) {
+            new_node.next = headd;
+            headd = new_node;
+        } else {
+            current = headd;
+            while (current.next != null && (Integer) current.next.data < (Integer) new_node.data)
+                current = current.next;
+            new_node.next = current.next;
+            current.next = new_node;
+        }
+        head = headd;
     }
 
     public static class Node<AnyType> {

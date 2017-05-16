@@ -3,13 +3,11 @@ package com.surya.LinkedLists;
 /**
  * Created by skuchibh on 5/15/2017.
  */
-public class LinkedList_Operations extends LinkedList {
+public class LinkedLists_Operations extends LinkedList {
 
     public Node SortedMerge(Node a, Node b) {
 
         //Sorts and merges 2 LinkedLists  which are already sorted individually.
-
-
 
         Node res = null;
         if (a == null) {
