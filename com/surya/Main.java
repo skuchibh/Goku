@@ -8,13 +8,10 @@ import com.surya.LinkedLists.LinkedList;
 public class Main {
     public static void main(String[] args) {
         LinkedList<Integer> llist = new LinkedList<>();
-        for (int i = 3; i < 10; i++) llist.addLast(i + 1);
-        llist.print();
-        llist.deleteNode(llist.getNodeAtIndex(3));
-        llist.print();
-        llist.deleteNode(llist.getNodeAtIndex(0));
-        llist.print();
-
+        for (int i = 3; i < 11; i++) llist.addLast(i + 1);
+        llist.print(llist.getHead());
+        llist.moveLastNodeToFirst();
+        llist.print(llist.getHead());
 
 
     }

@@ -1,5 +1,6 @@
 package com.surya.LinkedLists;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -49,6 +50,43 @@ public class LinkedList<AnyType> implements Iterable<AnyType> {
         }
     }
 
+    public Node removeDuplicates() {
+        if (head == null) throw new NoSuchElementException("EMPTY");
+        Node prev = head;
+        Node cur = head.next;
+        HashSet<AnyType> set = new HashSet<>();
+        set.add(head.data);
+        while (cur != null) {
+            if (set.contains(cur.data)) {
+                prev.next = cur.next;
+                cur = cur.next;
+            } else {
+                set.add((AnyType) cur.data);
+                prev = cur;
+                cur = cur.next;
+            }
+        }
+        return head;
+
+    }
+
+    public void printReverse() {
+        Node temp = head;
+        printRev(head);
+    }
+
+    private void printRev(Node temp) {
+        if (temp.next == null) {
+            System.out.println(temp.data);
+            return;
+        } else {
+            printRev(temp.next);
+            System.out.println(temp.data);
+            return;
+        }
+
+    }
+
     public void addLastWithNext(AnyType item, Node next) {
         if (head == null) addFirst(item);
         else {
@@ -59,11 +97,6 @@ public class LinkedList<AnyType> implements Iterable<AnyType> {
             tmp.next = new Node<AnyType>(item, next);
         }
     }
-
-    /* public boolean isLast(Node<AnyType> node) {
-         if (node.next == null) return true;
-         return false;
-     }*/
 
     public AnyType getNthNodeFromEnd(int n) {
         Node<AnyType> main = head;
@@ -81,6 +114,11 @@ public class LinkedList<AnyType> implements Iterable<AnyType> {
         }
         return main.data;
     }
+
+    /* public boolean isLast(Node<AnyType> node) {
+         if (node.next == null) return true;
+         return false;
+     }*/
 
     public AnyType getMiddle() {
         int count = 0;
@@ -124,9 +162,9 @@ public class LinkedList<AnyType> implements Iterable<AnyType> {
         head = head.next;
     }
 
-    public void print() {
+    public void print(Node tmp) {
         Iterator it = this.iterator();
-        Node<AnyType> tmp = head;
+
         if (tmp == null) return;
         while (tmp != null) {
             System.out.println(tmp.data);
@@ -201,6 +239,20 @@ public class LinkedList<AnyType> implements Iterable<AnyType> {
         curY.next = tmp;
     }
 
+    public void moveLastNodeToFirst() {
+        Node newHead = null;
+        Node temp = head;
+        Node temp2 = head;
+        while (temp.next.next != null) {
+            temp = temp.next;
+        }
+        newHead = new Node(temp.next.data);
+        temp.next = null;
+        newHead.next = temp2;
+        head = newHead;
+
+    }
+
     public String toString() {
         StringBuffer buff = new StringBuffer();
         for (Object x : this) {
@@ -226,6 +278,11 @@ public class LinkedList<AnyType> implements Iterable<AnyType> {
 
     public Node getHead() {
         return head;
+    }
+
+    public void setHead(Node incoming) {
+        head = incoming;
+
     }
 
     public void insertAfter(AnyType key, AnyType toInsert) {
@@ -278,6 +335,21 @@ public class LinkedList<AnyType> implements Iterable<AnyType> {
             count++;
         }
         return count;
+    }
+
+    public void pairWiseSwap() {
+        Node t = head;
+        while (t != null && t.next != null) {
+            swap(t, t.next);
+            t = t.next.next;
+        }
+    }
+
+    private void swap(Node a, Node b) {
+        AnyType temp = (AnyType) a.data;
+        temp = (AnyType) a.data;
+        a.data = b.data;
+        b.data = temp;
     }
 
     public int getLength_Recursive() {
@@ -372,12 +444,17 @@ public class LinkedList<AnyType> implements Iterable<AnyType> {
             this.next = next;
         }
 
+        public Node(AnyType data) {
+            this.data = data;
+        }
+
         @Override
         public String toString() {
             return "Node{" +
                     "data=" + data +
                     '}';
         }
+
 
     }
 
