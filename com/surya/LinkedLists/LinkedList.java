@@ -439,6 +439,10 @@ public class LinkedList<AnyType> implements Iterable<AnyType> {
         public AnyType data;
         public Node<AnyType> next = null;
 
+        public Node() {
+            data = null;
+        }
+
         public Node(AnyType data, Node<AnyType> next) {
             this.data = data;
             this.next = next;
@@ -454,6 +458,11 @@ public class LinkedList<AnyType> implements Iterable<AnyType> {
                     "data=" + data +
                     '}';
         }
+
+        public boolean isEmpty() {
+            return data == null ? true : false;
+        }
+
 
 
     }
