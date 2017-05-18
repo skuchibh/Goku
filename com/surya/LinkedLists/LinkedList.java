@@ -165,12 +165,74 @@ public class LinkedList<AnyType> implements Iterable<AnyType> {
     public void print(Node tmp) {
         Iterator it = this.iterator();
 
-        if (tmp == null) return;
+        if (tmp == null) {
+            System.out.println("Linked List is Empty");
+            System.out.println("============");
+            return;
+        }
         while (tmp != null) {
             System.out.println(tmp.data);
             tmp = tmp.next;
         }
         System.out.println("============");
+    }
+
+    public void print() {
+        print(head);
+    }
+
+    public LinkedList[] subLists_Alternate() {
+        Node temp = head;
+        int a = 1;
+        LinkedList l1 = new LinkedList();
+        LinkedList l2 = new LinkedList();
+        while (temp != null) {
+            if ((a & 1) == 1) {
+                if (l1.isEmpty()) {
+                    l1.addFirst(temp);
+                } else {
+                    l1.addLast(temp);
+                }
+            } else {
+                if (l2.isEmpty()) l2.addFirst(temp);
+                else l2.addLast(temp);
+            }
+            a++;
+            temp = temp.next;
+        }
+        LinkedList[] res = new LinkedList[2];
+        res[0] = l1;
+        res[1] = l2;
+        return res;
+    }
+
+    public void deleteAlternateNodes() {
+        if (head == null || head.next == null) return;
+        Node prev = head;
+        Node now = head.next;
+        while (prev != null && now != null) {
+            try {
+
+                prev.next = now.next;
+            } catch (Exception e) {
+                System.err.println(prev + " " + now);
+            }
+            prev = prev.next;
+            if (prev != null) {
+                now = prev.next;
+            }
+        }
+    }
+
+    public void delAltNodes_Rec() {
+        delAltNodes(head);
+    }
+
+    private void delAltNodes(Node now) {
+        if (now == null) return;
+        if (now.next == null) return;
+        now.next = now.next.next;
+        delAltNodes(now.next);
     }
 
     public void deleteNode(Node node) {
@@ -454,15 +516,12 @@ public class LinkedList<AnyType> implements Iterable<AnyType> {
 
         @Override
         public String toString() {
-            return "Node{" +
-                    "data=" + data +
-                    '}';
+            return "Node = " + data;
         }
 
         public boolean isEmpty() {
             return data == null ? true : false;
         }
-
 
 
     }

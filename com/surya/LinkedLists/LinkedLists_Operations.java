@@ -26,13 +26,11 @@ public class LinkedLists_Operations extends LinkedList {
     }
 
     private Node SortedIntersect(Node a, Node b) {
-        if (a == null || b == null) {
-            return null;
-        }
+        if (a == null || b == null) return null;
         if ((Integer) a.data < (Integer) b.data) {
             return SortedIntersect(a.next, b);
         }
-        if ((Integer) b.data < (Integer) a.data) {
+        if ((Integer) a.data > (Integer) b.data) {
             return SortedIntersect(a, b.next);
         }
         Node temp = new Node(a.data);
